@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourcePerFileMappings">
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/bb83095b-e34c-4f48-aed4-be95f5bdb392/console.sql" value="bb83095b-e34c-4f48-aed4-be95f5bdb392" />
+    <file url="file://$PROJECT_DIR$/docs/dev-ops/pgvector/sql/init.sql" value="bb83095b-e34c-4f48-aed4-be95f5bdb392" />
+  </component>
+</project>

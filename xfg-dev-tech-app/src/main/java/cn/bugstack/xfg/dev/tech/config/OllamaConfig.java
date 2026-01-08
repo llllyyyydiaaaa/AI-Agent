@@ -38,28 +38,42 @@ public class OllamaConfig {
         return new TokenTextSplitter();
     }
 
+//    @Bean
+//    public SimpleVectorStore vectorStore(@Value("${spring.ai.rag.embed}") String model, OllamaApi ollamaApi, OpenAiApi openAiApi) {
+//        if ("nomic-embed-text".equalsIgnoreCase(model)) {
+//            OllamaEmbeddingModel embeddingClient = new OllamaEmbeddingModel(ollamaApi);
+//            embeddingClient.withDefaultOptions(OllamaOptions.create().withModel("nomic-embed-text"));
+//            return new SimpleVectorStore(embeddingClient);
+//        } else {
+//            OpenAiEmbeddingModel embeddingClient = new OpenAiEmbeddingModel(openAiApi);
+//            return new SimpleVectorStore(embeddingClient);
+//        }
+//    }
+
+//    @Bean
+//    public PgVectorStore pgVectorStore(@Value("${spring.ai.rag.embed}") String model, OllamaApi ollamaApi, OpenAiApi openAiApi, JdbcTemplate jdbcTemplate) {
+//        if ("nomic-embed-text".equalsIgnoreCase(model)) {
+//            OllamaEmbeddingModel embeddingClient = new OllamaEmbeddingModel(ollamaApi);
+//            embeddingClient.withDefaultOptions(OllamaOptions.create().withModel("nomic-embed-text"));
+//            return new PgVectorStore(jdbcTemplate, embeddingClient);
+//        } else {
+//            OpenAiEmbeddingModel embeddingClient = new OpenAiEmbeddingModel(openAiApi);
+//            return new PgVectorStore(jdbcTemplate, embeddingClient);
+//        }
+//    }
+
     @Bean
-    public SimpleVectorStore vectorStore(@Value("${spring.ai.rag.embed}") String model, OllamaApi ollamaApi, OpenAiApi openAiApi) {
-        if ("nomic-embed-text".equalsIgnoreCase(model)) {
-            OllamaEmbeddingModel embeddingClient = new OllamaEmbeddingModel(ollamaApi);
-            embeddingClient.withDefaultOptions(OllamaOptions.create().withModel("nomic-embed-text"));
-            return new SimpleVectorStore(embeddingClient);
-        } else {
-            OpenAiEmbeddingModel embeddingClient = new OpenAiEmbeddingModel(openAiApi);
-            return new SimpleVectorStore(embeddingClient);
-        }
+    public SimpleVectorStore simpleVectorStore(OllamaApi ollamaApi){
+        OllamaEmbeddingModel embeddingClient = new OllamaEmbeddingModel(ollamaApi);
+        embeddingClient.withDefaultOptions(OllamaOptions.create().withModel("nomic-embed-text"));
+        return new SimpleVectorStore(embeddingClient);
     }
 
     @Bean
-    public PgVectorStore pgVectorStore(@Value("${spring.ai.rag.embed}") String model, OllamaApi ollamaApi, OpenAiApi openAiApi, JdbcTemplate jdbcTemplate) {
-        if ("nomic-embed-text".equalsIgnoreCase(model)) {
-            OllamaEmbeddingModel embeddingClient = new OllamaEmbeddingModel(ollamaApi);
-            embeddingClient.withDefaultOptions(OllamaOptions.create().withModel("nomic-embed-text"));
-            return new PgVectorStore(jdbcTemplate, embeddingClient);
-        } else {
-            OpenAiEmbeddingModel embeddingClient = new OpenAiEmbeddingModel(openAiApi);
-            return new PgVectorStore(jdbcTemplate, embeddingClient);
-        }
+    public PgVectorStore pgVectorStore(OllamaApi  ollamaApi, JdbcTemplate jdbcTemplate) {
+        OllamaEmbeddingModel embeddingClient = new OllamaEmbeddingModel(ollamaApi);
+        embeddingClient.withDefaultOptions(OllamaOptions.create().withModel("nomic-embed-text"));
+        return new PgVectorStore(jdbcTemplate, embeddingClient);
     }
 
 
